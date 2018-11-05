@@ -1,2 +1,2 @@
-# Taiwan futues program order tool and retail analyzer
+# Taiwan futures program order tool and retail analyzer
 ## Instruction
