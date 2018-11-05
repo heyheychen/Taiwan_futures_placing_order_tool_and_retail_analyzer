@@ -11,5 +11,5 @@ DDE(JihSun(日盛)) and excel:
 
 ## Placing order API
 We can download from JihSun official website and intall API.    
-Open HTSAPI3.0_app_VBA_function-N_for_github.xls and fill out ID and password for login into API.   
+Open HTSAPI3.0_app_VBA_function-N_for_github.xls and fill out ID and password for logining into API.   
 ![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/API%20login.jpg?raw=true)   
