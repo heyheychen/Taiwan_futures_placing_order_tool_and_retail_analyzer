@@ -183,19 +183,19 @@ tiger_tx_temp = 0
 
 ##define your own strategy
 def get_strategy1_data():
-####   your strategy start 
+    ####your strategy start 
 
+    ####your strategy stop
 
-####   your strategy stop
-    #order and record the order price
-    order_price = api_order(strategy)
+    #order and record the order price, for example
+    order_price = api_order("close sell")
     # use line bot to have a reminder by sending a line message, for example:
     message = "平倉 價:%d :時間: %s" % (order_price, time_data_in_format[-1])
     line_bot_api.push_message(user_id1, TextSendMessage(text=message))
     line_bot_api.push_message(user_id2, TextSendMessage(text=message))
     return 0
 
-##threading plot
+##plot threading
 def plot_data( time_data,price_data,day_or_night):
     plt.ion()
     plt.show()
@@ -292,7 +292,7 @@ def plot_data( time_data,price_data,day_or_night):
 
 
 
-#thread for cloud data
+#thread for cloud data, optional function
 t = threading.Thread(target=plot_data, args=(time_data,price_data,day_or_night))
 t.start()
 ws = create_connection(CreateCredential(), subprotocols=["provider"])
