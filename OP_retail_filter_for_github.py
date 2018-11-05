@@ -21,8 +21,8 @@ the_day = datetime.date.today()
 
 #read excel file
 #fill your excel file path
-book = xlwings.Book(r'C:\xxxx\xxxx\xxxxx\xxxxx\xxxxx\retail_filter_dde_excel.xlsx')
-book2 = xlwings.Book(r'C:\xxx\xxxxx\HTSAPI3.0_app_VBA_function-N.xls')
+book = xlwings.Book(r'C:\xxxx\xxxx\xxxxx\xxxxx\xxxxx\retail_filter_dde_excel_for_github.xlsx')
+book2 = xlwings.Book(r'C:\xxx\xxxxx\HTSAPI3.0_app_VBA_function-N_for_github.xls')
 
 print("start")
 sheet = book.sheets[0]
@@ -40,9 +40,7 @@ day_or_night = 1
 price_temp = 9872
 
 
-#line bot
-#use your line bot ID and pass word
-#user id are line message reciever
+#line bot,use your line bot ID and pass word and user_id are line message reciever
 channel_access_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 user_id1 = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
 user_id2 = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
@@ -136,66 +134,21 @@ def api_order(order):
 
 
 
-#初始化
-#時間
-time_data=[]
-time_data_in_format=[]
-time_data.append(0)
-if (day_or_night==1):
-    time_data_in_format.append("[09:00:00]")
-else:
-    time_data_in_format.append("[15:00:00]")
-#價
-price_data=[]
-price_data.append(price_temp)
-
-#小台
-dog_data_mtx_raw=[]
-dog_data_mtx_raw.append(0)
-tiger_data_mtx_raw=[]
-tiger_data_mtx_raw.append(0)
-dog_data_mtx = []
-dog_data_mtx.append(0) #散戶
-tiger_data_mtx = []  #大戶
-tiger_data_mtx.append(0)
-dog_buy_mtx_temp = 0
-tiger_buy_mtx_temp = 0
-dog_sell_mtx_temp = 0
-tiger_sell_mtx_temp = 0
-dog_mtx_temp = 0
-tiger_mtx_temp = 0
-#大台
-dog_data_tx_raw=[]
-dog_data_tx_raw.append(0)
-tiger_data_tx_raw=[]
-tiger_data_tx_raw.append(0)
-dog_data_tx = []  #  散戶
-dog_data_tx.append(0)
-tiger_data_tx = []  # 大戶
-tiger_data_tx.append(0)
-dog_buy_tx_temp = 0
-tiger_buy_tx_temp = 0
-dog_sell_tx_temp = 0
-tiger_sell_tx_temp = 0
-dog_tx_temp = 0
-tiger_tx_temp = 0
-
-
 ##define your own strategy
 def get_strategy1_data():
-    ####your strategy start 
+####   your strategy start 
 
-    ####your strategy stop
 
-    #order and record the order price, for example
-    order_price = api_order("close sell")
+####   your strategy stop
+    #order and record the order price
+    order_price = api_order(strategy)
     # use line bot to have a reminder by sending a line message, for example:
     message = "平倉 價:%d :時間: %s" % (order_price, time_data_in_format[-1])
     line_bot_api.push_message(user_id1, TextSendMessage(text=message))
     line_bot_api.push_message(user_id2, TextSendMessage(text=message))
     return 0
 
-##plot threading
+##threading plot
 def plot_data( time_data,price_data,day_or_night):
     plt.ion()
     plt.show()
@@ -291,8 +244,55 @@ def plot_data( time_data,price_data,day_or_night):
             # print("tiger_raw=", len(tiger_data_mtx_raw))
 
 
+#初始化
+#時間
+time_data=[]
+time_data_in_format=[]
+time_data.append(0)
+if (day_or_night==1):
+    time_data_in_format.append("[09:00:00]")
+else:
+    time_data_in_format.append("[15:00:00]")
+#價
+price_data=[]
+price_data.append(price_temp)
 
-#thread for cloud data, optional function
+#小台
+dog_data_mtx_raw=[]
+dog_data_mtx_raw.append(0)
+tiger_data_mtx_raw=[]
+tiger_data_mtx_raw.append(0)
+dog_data_mtx = []
+dog_data_mtx.append(0) #散戶
+tiger_data_mtx = []  #大戶
+tiger_data_mtx.append(0)
+dog_buy_mtx_temp = 0
+tiger_buy_mtx_temp = 0
+dog_sell_mtx_temp = 0
+tiger_sell_mtx_temp = 0
+dog_mtx_temp = 0
+tiger_mtx_temp = 0
+#大台
+dog_data_tx_raw=[]
+dog_data_tx_raw.append(0)
+tiger_data_tx_raw=[]
+tiger_data_tx_raw.append(0)
+dog_data_tx = []  #  散戶
+dog_data_tx.append(0)
+tiger_data_tx = []  # 大戶
+tiger_data_tx.append(0)
+dog_buy_tx_temp = 0
+tiger_buy_tx_temp = 0
+dog_sell_tx_temp = 0
+tiger_sell_tx_temp = 0
+dog_tx_temp = 0
+tiger_tx_temp = 0
+
+
+
+
+
+#thread for cloud data
 t = threading.Thread(target=plot_data, args=(time_data,price_data,day_or_night))
 t.start()
 ws = create_connection(CreateCredential(), subprotocols=["provider"])
@@ -384,7 +384,7 @@ while(True):
                 #策略訊號判斷並且下單
                 get_strategy1_data()
 
-                #data for internet
+                #data for internet, optional function
                 if (test_flag == 0):
                     ws = create_connection(CreateCredential(), subprotocols=["provider"])
                     internet_data = [time_temp_in_format,price_temp,dog_data_mtx[-1],tiger_data_tx[-1],dog_data_mtx_raw[-1],tiger_data_tx_raw[-1],strategy1_data[-1]]
