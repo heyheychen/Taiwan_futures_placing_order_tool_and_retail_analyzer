@@ -1,4 +1,4 @@
-# Taiwan futures program order tool and retail analyzer
+# Taiwan futures placing order tool and retail analyzer
 ## Instruction
 It is a project that shows real-time trend of retail and institution trader.
 Depend on this trend, we can define our own strategy and place an order automatically by programming.
