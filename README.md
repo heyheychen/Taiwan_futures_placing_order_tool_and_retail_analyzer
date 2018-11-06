@@ -15,5 +15,14 @@ Open HTSAPI3.0_app_VBA_function-N_for_github.xls page.2 and fill out ID and pass
 ![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/API%20login.jpg?raw=true)   
 
 After login API, we can use python to fill excel data to place an order.    
-![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/API%20order.jpg?raw=true) 
+![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/API%20order.jpg?raw=true)   
+
+## Result
+I define MTX(小台) less than 5 lot an order as retial trader, TX(大台) bigger than 5 lot an order as institution trader.    
+Raw data is one minute a count, the trend is the accumulated data of raw data.    
+The trend of retail and institution trader is as followed:    
+![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/result.png?raw=true)    
+According to the data, we can define strategy to place a order, we don't need to reading the tape in front of a pc or phone.    
+Line bot will also send a reminder if API placing a order:
+![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/line%20message.jpg?raw=true)  
 
