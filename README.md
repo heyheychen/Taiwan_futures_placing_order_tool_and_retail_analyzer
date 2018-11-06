@@ -27,5 +27,7 @@ Line bot will also send a reminder if API placing a order:
 ![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/line%20message.jpg?raw=true)  
 
 ## Reference
+1. line bot: https://github.com/line/line-bot-sdk-python   
+2. JihSun API and HTS(DDE): http://www.hts.com.tw/FramePage_API.asp
 
 
