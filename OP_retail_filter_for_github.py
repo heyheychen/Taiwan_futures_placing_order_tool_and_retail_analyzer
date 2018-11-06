@@ -1,4 +1,4 @@
-﻿#載入套件
+#載入套件
 import time
 import datetime
 import xlwings
@@ -49,14 +49,14 @@ line_bot_api = LineBotApi(channel_access_token)
 
 
 ## ID imformation for data to cloud, it is optional function
-def CreateCredential():
-    secret = b"xxxxxxxx"
-    import hashlib, hmac
-
-    ts = str(int(time.time()*1000 +10000))
-    sig = hmac.new(secret, ts.encode("utf8"), hashlib.sha256).digest()
-
-    return "ws://xx.xxx.xxx.xx:xxxx?ts="+ts+"&sig="+sig.hex()
+#def CreateCredential():
+#    secret = b"xxxxxxxx"
+#    import hashlib, hmac
+#
+#    ts = str(int(time.time()*1000 +10000))
+#    sig = hmac.new(secret, ts.encode("utf8"), hashlib.sha256).digest()
+#
+#    return "ws://xx.xxx.xxx.xx:xxxx?ts="+ts+"&sig="+sig.hex()
 
 def get_time_in_sec(day_or_night):
     time_prev = sheet.range('B3').value
@@ -292,10 +292,11 @@ tiger_tx_temp = 0
 
 
 
-#thread for cloud data
+#thread for plot
 t = threading.Thread(target=plot_data, args=(time_data,price_data,day_or_night))
 t.start()
-ws = create_connection(CreateCredential(), subprotocols=["provider"])
+#for cloud data
+#ws = create_connection(CreateCredential(), subprotocols=["provider"])
 
 
 
@@ -316,18 +317,19 @@ else:
 
 time_prev = (get_time_in_sec(day_or_night)//time_threshold)
 
-def sendData(data):
-    global ws
-    j = json.dumps(data)
-    print(j)
-    ws.send(j)
+## for cloud data
+#def sendData(data):
+#    global ws
+#    j = json.dumps(data)
+#    print(j)
+#    ws.send(j)
 
-def clearData():
-    global ws
-    ws.send("clear")
+#def clearData():
+#    global ws
+#    ws.send("clear")
 
-if(test_flag ==0):
-    clearData()
+#if(test_flag ==0):
+#    clearData()
 
 
 while(True):
@@ -385,11 +387,11 @@ while(True):
                 get_strategy1_data()
 
                 #data for internet, optional function
-                if (test_flag == 0):
-                    ws = create_connection(CreateCredential(), subprotocols=["provider"])
-                    internet_data = [time_temp_in_format,price_temp,dog_data_mtx[-1],tiger_data_tx[-1],dog_data_mtx_raw[-1],tiger_data_tx_raw[-1],strategy1_data[-1]]
-                    sendData(internet_data)
-                    ws.close()
+                #if (test_flag == 0):
+                #    ws = create_connection(CreateCredential(), subprotocols=["provider"])
+                #    internet_data = [time_temp_in_format,price_temp,dog_data_mtx[-1],tiger_data_tx[-1],dog_data_mtx_raw[-1],tiger_data_tx_raw[-1],strategy1_data[-1]]
+                #    sendData(internet_data)
+                #    ws.close()
 
                 # print("time=", time_data)
                 # print("dog_mtx=", dog_data_mtx)
