@@ -23,6 +23,9 @@ Raw data is one minute a count, the trend is the accumulated data of raw data.
 The trend of retail and institution trader is as followed:    
 ![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/result.png?raw=true)    
 According to the data, we can define strategy to place a order, we don't need to reading the tape in front of a pc or cell phone.    
-Line bot will also send a reminder if API placing a order:
+Line bot will also send a reminder if API placing a order:    
 ![Alt text](https://github.com/heyheychen/Taiwan_futures_placing_order_tool_and_retail_analyzer/blob/master/pic/line%20message.jpg?raw=true)  
+
+## Reference
+
 
